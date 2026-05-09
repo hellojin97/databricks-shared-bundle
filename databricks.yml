@@ -5,6 +5,11 @@ include:
   - configuration/*.yml
   - configuration/*.yaml
 
+sync:
+  exclude:
+    - bundle_config_schema.json
+    - github
+
 targets:
   dev:
     default: true
