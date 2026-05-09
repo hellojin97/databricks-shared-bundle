@@ -1,0 +1,10 @@
+bundle:
+  name: "shared_bundle"
+
+permissions:
+  - group_name: "DATABRICKS_DMP_USER"
+    level: CAN_MANAGE
+
+targets:
+  dev:
+    default: true

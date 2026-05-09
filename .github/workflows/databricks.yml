@@ -1,0 +1,23 @@
+name: Databricks Deploy
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: databricks/setup-cli@main
+      - name: Validate bundle
+        run: databricks bundle validate -t dev --var "workspace_host=${{ vars.DATABRICKS_HOST }}"
+        env:
+          DATABRICKS_HOST: ${{ env.DATABRICKS_HOST }}
