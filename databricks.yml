@@ -9,7 +9,7 @@ targets:
   dev:
     default: true
     workspace:
-      root_path: ${vars.bundle_root_path}
+      root_path: ${var.bundle_root_path}
     permissions:
       - group_name: "DATABRICKS_DMP_USER"
         level: CAN_MANAGE
