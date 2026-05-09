@@ -37,9 +37,16 @@ jobs:
       - uses: databricks/setup-cli@v0.299.1
       - name: Deploy bundle
         run: databricks bundle deploy -t dev
+      - name: Get workspace URL
+        id: ws
+        if: success()
+        run: |
+          ROOT=$(databricks bundle validate -t dev -o json | jq -r '.workspace.root_path')
+          echo "url=${DATABRICKS_HOST}/#workspace${ROOT}" >> "$GITHUB_OUTPUT"
       - name: Notify Discord
         uses: sarisia/actions-status-discord@v1.16.0
         if: always()
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: "Deploy (dev)"
+          description: ${{ steps.ws.outputs.url && format('[Open in Databricks]({0})', steps.ws.outputs.url) || '' }}
