@@ -4,3 +4,6 @@ bundle:
 targets:
   dev:
     default: true
+    permissions:
+      - group_name: "DATABRICKS_DMP_USER"
+        level: CAN_MANAGE
