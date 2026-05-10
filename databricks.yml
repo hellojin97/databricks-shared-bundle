@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=bundle_config_schema.json
 bundle:
   name: "shared_bundle"
+  engine: direct
 
 permissions:
   - level: CAN_MANAGE
