@@ -2,4 +2,7 @@
 name = "databricks-shared-bundle"
 version = "0.1.0"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "databricks-connect==16.4.*",
+    "ruff>=0.15.12",
+]

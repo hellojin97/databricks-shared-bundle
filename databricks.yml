@@ -1,5 +1,12 @@
+# yaml-language-server: $schema=bundle_config_schema.json
 bundle:
   name: "shared_bundle"
+
+permissions:
+  - level: CAN_MANAGE
+    service_principal_name: ${var.service_principal}
+  - level: CAN_MANAGE
+    group_name: ${var.workspace_group}
 
 include:
   - configuration/*.yml
@@ -7,14 +14,11 @@ include:
 
 sync:
   exclude:
-    - bundle_config_schema.json
-    - github
+    - .github
+    - .gitignore
 
 targets:
   dev:
     default: true
     workspace:
       root_path: ${var.bundle_root_path}
-    permissions:
-      - group_name: "DATABRICKS_DMP_USER"
-        level: CAN_MANAGE

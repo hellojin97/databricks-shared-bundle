@@ -1,3 +1,26 @@
+# yaml-language-server: $schema=../bundle_config_schema.json
 variables:
   bundle_root_path:
     default: "/Workspace/bundles/shared_bundle"
+  default_dev_cluster:
+    description: "databricks single node for development(16.4.x)"
+  workspace_group:
+    default: "DATABRICKS_DMP_USER"
+  service_principal:
+    default: "0eca3a9d-2bd1-4829-b827-a19de95cce90"
+  
+  storage_root:
+    default: abfss://dbx-hjkim-catalogs@adlshjkimkccom.dfs.core.windows.net/root
+    description: extloc_catalogs_root_hjkim
+
+  common_tags:
+    type: complex
+    default:
+        env: DEV
+        deploy: GITHUB_ACTIONS
+        managed_by: HYEONJIN_KIM
+
+targets:
+  dev:
+    variables:
+        default_dev_cluster: "0501-164229-xe2nvqud"

@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=../bundle_config_schema.json
+resources:
+  catalogs:
+    dev_catalogs:
+      name: "hjin_playground"
+      comment: "Playground catalog for databricks projects (Managed By TF)"
+      properties:
+        env: ${var.common_tags.env}
+        managed_by: ${var.common_tags.managed_by}
+        deploy: ${var.common_tags.deploy}
+        project: PLAYGROUND
+      grants:
+        - principal: ${var.workspace_group}
+          privileges: [ALL_PRIVILEGES]
+      lifecycle: 
+        prevent_destroy: true

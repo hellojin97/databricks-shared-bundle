@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=../bundle_config_schema.json
+resources:
+  clusters:
+    dev_single_node:
+      kind: CLASSIC_PREVIEW
+
+      cluster_name: "Default Dev Cluster"
+      spark_version: "16.4.x-scala2.13"
+      azure_attributes: {
+        first_on_demand: 1,
+        availability: ON_DEMAND_AZURE,
+        spot_bid_max_price: -1,
+      }
+      node_type_id: "Standard_D4ds_v5"
+      driver_node_type_id: "Standard_D4ds_v5"
+      custom_tags:
+        env: ${var.common_tags.env}
+        deploy: ${var.common_tags.deploy}
+        managed_by: ${var.common_tags.managed_by}
+        workload: POC
+        spark_version: "16.4"
+        cluster_type: SINGLE
+      
+      autotermination_minutes: 120
+      single_user_name: ${var.workspace_group}
+      data_security_mode: DATA_SECURITY_MODE_AUTO
+      num_workers: 0
+      is_single_node: true
+      enable_elastic_disk: true
+      apply_policy_default_values: false
