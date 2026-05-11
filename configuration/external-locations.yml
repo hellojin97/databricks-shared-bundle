@@ -4,6 +4,7 @@ resources:
     extloc_data_playground:
       name: "extloc_data_playground"
       url: abfss://playground@adlsdataplaykc.dfs.core.windows.net/
+      read_only: false
       credential_name: dev_hjkim_storage_rw
       enable_file_events: false
       grants: 
